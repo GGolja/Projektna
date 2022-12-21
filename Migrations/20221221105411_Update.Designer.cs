@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projektna.Data;
 
@@ -11,9 +12,10 @@ using Projektna.Data;
 namespace Projektna.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20221221105411_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -421,9 +423,6 @@ namespace Projektna.Migrations
 
                     b.Property<DateTime>("ModelYear")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("Sold")
-                        .HasColumnType("bit");
 
                     b.Property<int>("TrimID")
                         .HasColumnType("int");

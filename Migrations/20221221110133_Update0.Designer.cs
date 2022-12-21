@@ -12,8 +12,8 @@ using Projektna.Data;
 namespace Projektna.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20221220171354_ExtendBranch")]
-    partial class ExtendBranch
+    [Migration("20221221110133_Update0")]
+    partial class Update0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -299,6 +299,40 @@ namespace Projektna.Migrations
                     b.ToTable("Customer", (string)null);
                 });
 
+            modelBuilder.Entity("Projektna.Models.Receipt", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BranchID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("VehicleID");
+
+                    b.ToTable("Receipt", (string)null);
+                });
+
             modelBuilder.Entity("Projektna.Models.Seller", b =>
                 {
                     b.Property<int>("ID")
@@ -318,6 +352,37 @@ namespace Projektna.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Seller", (string)null);
+                });
+
+            modelBuilder.Entity("Projektna.Models.TestDrive", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("BranchID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("VehicleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BranchID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("VehicleID");
+
+                    b.ToTable("TestDrive", (string)null);
                 });
 
             modelBuilder.Entity("Projektna.Models.Trim", b =>
@@ -358,6 +423,9 @@ namespace Projektna.Migrations
 
                     b.Property<DateTime>("ModelYear")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("Sold")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TrimID")
                         .HasColumnType("int");
@@ -444,6 +512,60 @@ namespace Projektna.Migrations
                         .HasForeignKey("CustomerAccId");
 
                     b.Navigation("CustomerAcc");
+                });
+
+            modelBuilder.Entity("Projektna.Models.Receipt", b =>
+                {
+                    b.HasOne("Projektna.Models.Branch", "Branch")
+                        .WithMany()
+                        .HasForeignKey("BranchID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektna.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektna.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Vehicle");
+                });
+
+            modelBuilder.Entity("Projektna.Models.TestDrive", b =>
+                {
+                    b.HasOne("Projektna.Models.Branch", "Branch")
+                        .WithMany()
+                        .HasForeignKey("BranchID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektna.Models.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektna.Models.Vehicle", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("Projektna.Models.Vehicle", b =>

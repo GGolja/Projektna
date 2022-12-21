@@ -17,6 +17,8 @@ namespace Projektna.Data
         public DbSet<Branch> Branches { get; set; } 
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Trim> Trims { get; set; }
+        public DbSet<Receipt> Receipts {get; set;}
+        public DbSet<TestDrive> TestDrives {get; set;}
 
         protected override void OnModelCreating (ModelBuilder modelBuilder)
         {
@@ -26,6 +28,8 @@ namespace Projektna.Data
             modelBuilder.Entity<Branch>().ToTable("Branch");
             modelBuilder.Entity<Vehicle>().ToTable("Vehicle");
             modelBuilder.Entity<Trim>().ToTable("Trim");
+            modelBuilder.Entity<Receipt>().ToTable("Receipt");
+            modelBuilder.Entity<TestDrive>().ToTable("TestDrive");
             
         }
      

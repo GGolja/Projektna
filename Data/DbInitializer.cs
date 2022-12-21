@@ -76,6 +76,7 @@ namespace Projektna.Data
                 new Vehicle{Brand="Honda", Model="Civic", ModelYear=DateTime.Parse("2022-01-01"), TrimID=1},
                 new Vehicle{Brand="Toyota", Model="Yaris", ModelYear=DateTime.Parse("2021-01-01"), TrimID=2},
                 new Vehicle{Brand="Toyota", Model="Prius", ModelYear=DateTime.Parse("2018-01-01"), TrimID=3},
+                new Vehicle{Brand="Toyota", Model="Hilux", ModelYear=DateTime.Parse("2018-01-01"), TrimID=1, Sold = true}
             };
             foreach (Vehicle v in vehicles)
             {

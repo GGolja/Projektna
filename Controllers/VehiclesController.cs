@@ -39,7 +39,7 @@ namespace Projektna.Controllers
             var vehicle = await _context.Vehicles
                 .Include(v => v.TrimLevel)
                 .FirstOrDefaultAsync(m => m.ID == id);
-            if (vehicle == null)
+            if (vehicle == null || vehicle.Sold)
             {
                 return NotFound();
             }

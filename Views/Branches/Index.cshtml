@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.BranchSeller)
             </th>
             <th>
+                
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
             </th>
             <th>
@@ -40,7 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BranchSeller.ID)
+                @Html.DisplayFor(modelItem => item.BranchSeller.SellerFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BranchSeller.SellerLastName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)

@@ -8,7 +8,8 @@
         public DateTime ModelYear { get; set; }
         public int TrimID { get; set; }
         public Trim TrimLevel { get; set; }
-        
+        public bool Sold { get; set; } = false;
+
 
     }
 }
