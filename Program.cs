@@ -19,7 +19,7 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.MapRazorPages();
@@ -48,7 +48,11 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
 app.UseRouting();
 app.UseAuthentication();;
 
@@ -59,6 +63,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
 /*
 static void CreateDbIfNotExists(IHost host)
         {
