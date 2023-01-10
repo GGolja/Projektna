@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-var connectionString = builder.Configuration.GetConnectionString("AzureContext");
+var connectionString = builder.Configuration.GetConnectionString("StoreContext");
 //builder.Services.AddDbContext<StoreContext>(options =>
   //options.UseSqlServer(builder.Configuration.GetConnectionString("StoreContext")));
 
